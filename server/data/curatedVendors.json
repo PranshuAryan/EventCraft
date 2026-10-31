@@ -1,0 +1,6 @@
+[{"id":"c1","name":"Sample Grand Banquet","category":"banquet","address":"Sample address, Patna","lat":25.6,"lng":85.14,"phone":null,"website":null,"rating":4.3,"priceLevel":3},
+{"id":"c2","name":"Sample Garden Lawn","category":"banquet","address":"Sample address, Patna","lat":25.61,"lng":85.13,"phone":null,"website":null,"rating":4.0,"priceLevel":2},
+{"id":"c3","name":"Sample Residency Hotel","category":"hotel","address":"Sample address, Patna","lat":25.6,"lng":85.12,"phone":null,"website":null,"rating":4.1,"priceLevel":2},
+{"id":"c4","name":"Sample Shubh Caterers","category":"caterer","address":"Sample address, Patna","lat":25.59,"lng":85.15,"phone":null,"website":null,"rating":4.4,"priceLevel":2},
+{"id":"c5","name":"Sample Rangoli Decorators","category":"decorator","address":"Sample address, Patna","lat":25.62,"lng":85.14,"phone":null,"website":null,"rating":4.2,"priceLevel":2},
+{"id":"c6","name":"Sample Click Studio","category":"photographer","address":"Sample address, Patna","lat":25.6,"lng":85.16,"phone":null,"website":null,"rating":4.5,"priceLevel":2}]
