@@ -149,3 +149,10 @@ Hosted database, Hindi interface, keyword search for decorators and photographer
 - `npm run lint` runs ESLint (React, hooks and Node rules); `npm run format` runs Prettier.
 - `npm run check` runs lint, format check and all tests. GitHub Actions runs the same checks plus the build on every push.
 - Server code is split by job: `routes/` (HTTP), `planner.js` and `ranking.js` (AI features), `ai.js` (Groq client with retries), `geo.js` (Geoapify), `config.js` (all tunable values), `http.js` (response and validation helpers).
+
+## Testing
+
+- `npm test` runs all tests (server: Vitest + Supertest, client: Vitest + Testing Library + axe). `npm run coverage` adds a coverage report.
+- **127 tests**: 103 server and 24 client. Server statement coverage is about 96%.
+- Groq and Geoapify are mocked, so no API keys are needed. Tests cover the failure paths: AI retry on rate limits, switching models, repairing malformed AI replies, template fallback plans, and curated vendors when maps fail.
+- Auth tests cover password hashing, tampered or expired session tokens, duplicate emails, and HttpOnly cookies.
