@@ -40,7 +40,7 @@ If Groq fails or returns something unusable, the server returns a deterministic 
 
 ### 2. Date-aware timeline
 
-The AI proposes tasks with an *ideal* lead time and a *minimum notice* in days. The server (not the AI) turns these into dates using `scheduleTimeline` in `utils.js`:
+The AI proposes tasks with an _ideal_ lead time and a _minimum notice_ in days. The server (not the AI) turns these into dates using `scheduleTimeline` in `utils.js`:
 
 - Enough time (90+ days): ideal lead times are kept.
 - Less time: each lead time is scaled down proportionally, never below 1 day, never before today. The earliest task becomes "Start today".
@@ -76,26 +76,26 @@ Budget fit is calculated in the client from the plan: the budget line for the ca
 
 ## Design decisions
 
-| Decision | Reason |
-|---|---|
-| The AI never supplies places or contacts | Language models invent plausible but fake businesses. Real data comes from a places API. |
-| zod on every input and every AI reply | Untrusted input and unreliable AI output both get the same treatment. |
-| Tolerant AI parsing, then fallback | Models return slightly different shapes. The schema accepts common variants, and a template plan is the last resort. |
-| Dates computed in code | Models are unreliable with dates. |
-| Provider fallbacks (Geoapify, then sample list) | The demo must not break when a quota or network fails. |
-| Auto-discovery of a Groq model | Available models differ by account. |
-| JSON-file user store | No native dependencies or database setup. Isolated in `userStore.js` so it can be replaced. |
-| Caching in memory | Places 24h, plans 1h, search 5min. Simple and enough for one server. |
-| Code-split pages | The first load only fetches the home page code. |
+| Decision                                        | Reason                                                                                                               |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| The AI never supplies places or contacts        | Language models invent plausible but fake businesses. Real data comes from a places API.                             |
+| zod on every input and every AI reply           | Untrusted input and unreliable AI output both get the same treatment.                                                |
+| Tolerant AI parsing, then fallback              | Models return slightly different shapes. The schema accepts common variants, and a template plan is the last resort. |
+| Dates computed in code                          | Models are unreliable with dates.                                                                                    |
+| Provider fallbacks (Geoapify, then sample list) | The demo must not break when a quota or network fails.                                                               |
+| Auto-discovery of a Groq model                  | Available models differ by account.                                                                                  |
+| JSON-file user store                            | No native dependencies or database setup. Isolated in `userStore.js` so it can be replaced.                          |
+| Caching in memory                               | Places 24h, plans 1h, search 5min. Simple and enough for one server.                                                 |
+| Code-split pages                                | The first load only fetches the home page code.                                                                      |
 
 ## Where to change things
 
-| To change | Edit |
-|---|---|
-| The AI prompt or model choice | `server/src/services.js` |
-| Plan shape accepted from the AI | `server/src/schemas.js` |
-| Timeline logic, budget splits, template plan | `server/src/utils.js` |
-| Which Geoapify categories are searched | `CATS` in `server/src/services.js` |
-| Budget-fit thresholds | `PER_GUEST` and `tierFor` in `client/src/pages/Discover.jsx` |
-| Colours and spacing | `client/src/styles.css` (variables at the top) |
-| Sample vendors | `server/data/curatedVendors.json` |
+| To change                                    | Edit                                                         |
+| -------------------------------------------- | ------------------------------------------------------------ |
+| The AI prompt or model choice                | `server/src/services.js`                                     |
+| Plan shape accepted from the AI              | `server/src/schemas.js`                                      |
+| Timeline logic, budget splits, template plan | `server/src/utils.js`                                        |
+| Which Geoapify categories are searched       | `CATS` in `server/src/services.js`                           |
+| Budget-fit thresholds                        | `PER_GUEST` and `tierFor` in `client/src/pages/Discover.jsx` |
+| Colours and spacing                          | `client/src/styles.css` (variables at the top)               |
+| Sample vendors                               | `server/data/curatedVendors.json`                            |

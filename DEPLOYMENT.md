@@ -30,13 +30,13 @@ Accounts and saved plans live in a free **Upstash Redis** database. Vercel's fil
 2. Leave **Root Directory** as the repository root. The build settings come from `vercel.json`, so you do not need to change them.
 3. Before pressing **Deploy**, open **Environment Variables** and add:
 
-| Name | Value |
-|---|---|
-| `GROQ_API_KEY` | your Groq key |
-| `GEOAPIFY_API_KEY` | your Geoapify key |
-| `SESSION_SECRET` | a long random string (see below) |
+| Name               | Value                            |
+| ------------------ | -------------------------------- |
+| `GROQ_API_KEY`     | your Groq key                    |
+| `GEOAPIFY_API_KEY` | your Geoapify key                |
+| `SESSION_SECRET`   | a long random string (see below) |
 
-   To make a secret, run `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` and paste the result. The app refuses to start on Vercel without it.
+To make a secret, run `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` and paste the result. The app refuses to start on Vercel without it.
 
 4. Press **Deploy**.
 
@@ -54,14 +54,14 @@ Accounts and saved plans live in a free **Upstash Redis** database. Vercel's fil
 
 ## Common problems
 
-| Symptom | Likely cause and fix |
-|---|---|
-| The API page shows an error about `SESSION_SECRET` | Add the variable in Vercel settings and redeploy. |
-| Sign-up works but you are logged out on the next page, or the account disappears | No Redis database is connected. Complete step 3 and redeploy. |
-| The site opens but `/api/...` returns the home page or 404 | `vercel.json` is missing from the repository root, or Root Directory is not the repo root. |
-| AI plan stops after about 10 seconds | The function time limit is lower than expected. `vercel.json` asks for 60 seconds. If your plan caps it lower, the deployment log says so. |
-| "Origin not allowed" when posting | You are calling the API from a different website. Add that site to `CLIENT_ORIGIN`. Same-site use needs nothing. |
-| Plans always fall back to the template | The Groq key is missing or the model is unavailable. Check the function logs for `[plan] AI failed`. |
+| Symptom                                                                          | Likely cause and fix                                                                                                                       |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| The API page shows an error about `SESSION_SECRET`                               | Add the variable in Vercel settings and redeploy.                                                                                          |
+| Sign-up works but you are logged out on the next page, or the account disappears | No Redis database is connected. Complete step 3 and redeploy.                                                                              |
+| The site opens but `/api/...` returns the home page or 404                       | `vercel.json` is missing from the repository root, or Root Directory is not the repo root.                                                 |
+| AI plan stops after about 10 seconds                                             | The function time limit is lower than expected. `vercel.json` asks for 60 seconds. If your plan caps it lower, the deployment log says so. |
+| "Origin not allowed" when posting                                                | You are calling the API from a different website. Add that site to `CLIENT_ORIGIN`. Same-site use needs nothing.                           |
+| Plans always fall back to the template                                           | The Groq key is missing or the model is unavailable. Check the function logs for `[plan] AI failed`.                                       |
 
 ## Limits to know about
 

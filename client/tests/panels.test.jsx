@@ -5,8 +5,20 @@ import { show } from "./helpers.jsx";
 import { LocationBar, Account } from "../src/App.jsx";
 import { api } from "../src/api.js";
 vi.mock("../src/api.js", async (orig) => ({ ...(await orig()), api: vi.fn() }));
-const SAKET = [{ label: "Saket, New Delhi, Delhi, India", primary: "Saket", secondary: "New Delhi, Delhi", kind: "Area", lat: 28.5, lng: 77.2 }];
-beforeEach(() => { api.mockReset(); api.mockResolvedValue(SAKET); });
+const SAKET = [
+  {
+    label: "Saket, New Delhi, Delhi, India",
+    primary: "Saket",
+    secondary: "New Delhi, Delhi",
+    kind: "Area",
+    lat: 28.5,
+    lng: 77.2,
+  },
+];
+beforeEach(() => {
+  api.mockReset();
+  api.mockResolvedValue(SAKET);
+});
 describe("Location panel", () => {
   it("opens, has no axe violations, fades the hint when typing, biases search and picks an area", async () => {
     const { container } = show(<LocationBar />);
@@ -25,7 +37,9 @@ describe("Location panel", () => {
   it("closes with Escape", () => {
     show(<LocationBar />);
     fireEvent.click(screen.getByRole("button", { name: /Change location/ }));
-    fireEvent.keyDown(screen.getByRole("group", { name: "Choose your location" }), { key: "Escape" });
+    fireEvent.keyDown(screen.getByRole("group", { name: "Choose your location" }), {
+      key: "Escape",
+    });
     expect(screen.queryByRole("group", { name: "Choose your location" })).toBeNull();
   });
 });

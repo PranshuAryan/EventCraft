@@ -4,7 +4,16 @@ import { MemoryRouter } from "react-router-dom";
 import { axe } from "vitest-axe";
 import { Loc } from "../src/App.jsx";
 import Login from "../src/pages/Login.jsx";
-const view = () => render(<Loc.Provider value={{ user: null, setUser() {} }}><MemoryRouter><main><Login /></main></MemoryRouter></Loc.Provider>);
+const view = () =>
+  render(
+    <Loc.Provider value={{ user: null, setUser() {} }}>
+      <MemoryRouter>
+        <main>
+          <Login />
+        </main>
+      </MemoryRouter>
+    </Loc.Provider>,
+  );
 describe("Login page", () => {
   it("has no axe violations in both modes", async () => {
     const { container } = view();

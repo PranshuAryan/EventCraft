@@ -10,11 +10,13 @@
 ## Controls in place
 
 ### Secrets
+
 - Keys live only in `server/.env`, which is git-ignored. `server/.env.example` has empty placeholders.
 - The browser calls our API only. Groq and Geoapify are never called from the client, so no key is in the client bundle.
 - The session signing secret comes from `SESSION_SECRET` or is generated and stored in `server/data/.session_secret` (also git-ignored, file mode 0600 where the OS supports it).
 
 ### Accounts and sessions
+
 - Passwords are hashed with **scrypt** and a random 16-byte salt, and compared in constant time. Plain passwords are never stored or returned.
 - Sessions are HMAC-SHA256 signed tokens with a 7-day expiry, checked in constant time. Forged or tampered tokens are rejected.
 - The cookie is `HttpOnly` (not readable by page scripts) and `SameSite=Lax`, plus `Secure` when `NODE_ENV=production`.
@@ -22,16 +24,19 @@
 - Per-user data is looked up from the verified token, never from an id sent by the client, so one person cannot read another's data. This is covered by automated tests.
 
 ### Input handling
+
 - Every request body and query is validated with **zod**: types, lengths, ranges, enums, coordinate bounds, dates not in the past, and guests 1 to 5000.
 - Request size limits: 20 KB by default, 100 KB for plan refinement, 150 KB for saving data.
 - Free text is stripped of control characters and angle brackets and length-capped before it reaches a prompt.
 
 ### Prompt injection
+
 - User text is placed inside `<user_input>` tags and the system prompt states that it is data, not instructions.
 - The AI's output is never trusted: it is parsed, validated with zod and normalised. Plans have to match the schema, and vendor rankings can only refer to ids we supplied. Unknown ids are dropped.
 - AI output is rendered as plain text by React. `dangerouslySetInnerHTML` is not used anywhere.
 
 ### Network and abuse protection
+
 - `helmet` sets security headers. CORS allows only origins listed in `CLIENT_ORIGIN`.
 - Writes (non-GET requests) that carry an `Origin` header are refused with 403 unless the origin is in that list or is the same host the request was sent to, on top of `SameSite` cookies.
 - Rate limits per client address: 300 requests per 15 minutes overall, 10 per minute for AI routes (plan, refine and ranking share this limit), and 20 per 15 minutes for sign-up and login.

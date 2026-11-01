@@ -2,20 +2,20 @@
 
 An AI event planning assistant for **weddings, birthdays and community events**. Tell it what you are celebrating, where, when, how many guests and what you can spend. It builds a budget, a timeline with real calendar dates, a vendor checklist and personalised ideas, then finds real nearby venues and tracks your bookings and payments.
 
-Built for the Google Virtual PromptWars Hack2Skill hackathon, Challenge 5: *"Create a GenAI-powered planning assistant that helps users organize weddings, birthdays, and community events with budgets, timelines, vendor checklists, and personalized ideas."*
+Built for the Google Virtual PromptWars Hack2Skill hackathon, Challenge 5: _"Create a GenAI-powered planning assistant that helps users organize weddings, birthdays, and community events with budgets, timelines, vendor checklists, and personalized ideas."_
 
 ## Features
 
-| Area | What it does |
-|---|---|
-| **Plan** | Event form (type, date, guests, budget, meal, style, language). The AI returns a budget split, timeline, vendor checklist, ideas and warnings. |
+| Area                    | What it does                                                                                                                                                                                                               |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Plan**                | Event form (type, date, guests, budget, meal, style, language). The AI returns a budget split, timeline, vendor checklist, ideas and warnings.                                                                             |
 | **Date-aware timeline** | Every task gets a real calendar date worked out from today to the event date. If time is short, steps are compressed, the first one is marked "Start today", and tasks with too little vendor notice are flagged **Rush**. |
-| **Refine** | "Make this plan better": add more details or answer the AI's follow-up questions and it revises the plan, lists *what changed*, and asks new questions. Versions are numbered and the last change can be undone. |
-| **Find vendors** | Real hotels, banquets and caterers near a city, area or street, pulled from Geoapify and ranked by the AI against your budget. Cards show *Fits your budget*, *May exceed your budget* or *Ask for a quote*. |
-| **Payments** | Track each vendor's status, agreed amount, amount paid and balance, with totals and an over-budget alert. |
-| **Accounts** | Sign up and log in. Each person's plan and payments are saved to their own account. |
-| **Location** | Use your current location or search for a city, area or street. |
-| **Hindi** | Generated plans can be produced in Hindi. (The menus and buttons are English only for now.) |
+| **Refine**              | "Make this plan better": add more details or answer the AI's follow-up questions and it revises the plan, lists _what changed_, and asks new questions. Versions are numbered and the last change can be undone.           |
+| **Find vendors**        | Real hotels, banquets and caterers near a city, area or street, pulled from Geoapify and ranked by the AI against your budget. Cards show _Fits your budget_, _May exceed your budget_ or _Ask for a quote_.               |
+| **Payments**            | Track each vendor's status, agreed amount, amount paid and balance, with totals and an over-budget alert.                                                                                                                  |
+| **Accounts**            | Sign up and log in. Each person's plan and payments are saved to their own account.                                                                                                                                        |
+| **Location**            | Use your current location or search for a city, area or street.                                                                                                                                                            |
+| **Hindi**               | Generated plans can be produced in Hindi. (The menus and buttons are English only for now.)                                                                                                                                |
 
 ## Quick start
 
@@ -44,28 +44,28 @@ Check each provider's current free-tier limits, since they change.
 
 ### Environment variables (`server/.env`)
 
-| Variable | Required | Purpose |
-|---|---|---|
-| `GROQ_API_KEY` | For AI plans | Groq API key. |
-| `GEOAPIFY_API_KEY` | For real places and location search | Geoapify API key. |
-| `CLIENT_ORIGIN` | No (default `http://localhost:5173`) | Comma-separated list of allowed browser origins. |
-| `PORT` | No (default `4000`) | API port. |
-| `SESSION_SECRET` | **Yes when deployed**; optional locally | Long random string for signing login sessions. Locally, if empty, one is generated and saved in `server/data/.session_secret`. Deployed, the app refuses to start without it. |
-| `GROQ_MODEL` | No | Force a specific Groq model. By default the app uses `llama-3.3-70b-versatile`, and if your account cannot use it, it asks Groq which models you have and picks one. |
-| `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | When deployed | Added for you by the Vercel Upstash integration. Without them the app uses a local file. |
-| `NODE_ENV` | No | Set to `production` when deployed. Turns on `Secure` cookies and hides internal error reasons. |
+| Variable                                             | Required                                | Purpose                                                                                                                                                                       |
+| ---------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GROQ_API_KEY`                                       | For AI plans                            | Groq API key.                                                                                                                                                                 |
+| `GEOAPIFY_API_KEY`                                   | For real places and location search     | Geoapify API key.                                                                                                                                                             |
+| `CLIENT_ORIGIN`                                      | No (default `http://localhost:5173`)    | Comma-separated list of allowed browser origins.                                                                                                                              |
+| `PORT`                                               | No (default `4000`)                     | API port.                                                                                                                                                                     |
+| `SESSION_SECRET`                                     | **Yes when deployed**; optional locally | Long random string for signing login sessions. Locally, if empty, one is generated and saved in `server/data/.session_secret`. Deployed, the app refuses to start without it. |
+| `GROQ_MODEL`                                         | No                                      | Force a specific Groq model. By default the app uses `llama-3.3-70b-versatile`, and if your account cannot use it, it asks Groq which models you have and picks one.          |
+| `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | When deployed                           | Added for you by the Vercel Upstash integration. Without them the app uses a local file.                                                                                      |
+| `NODE_ENV`                                           | No                                      | Set to `production` when deployed. Turns on `Secure` cookies and hides internal error reasons.                                                                                |
 
 Never commit `.env`. It is already in `.gitignore`.
 
 ## Scripts
 
-| Command | What it does |
-|---|---|
-| `npm run dev` | Starts the client and the server together. |
-| `npm test` | Runs the server tests, then the client tests. |
-| `npm -w server test` | Server tests only. |
-| `npm -w client test` | Client tests only. |
-| `npm -w client run build` | Production build of the client. |
+| Command                   | What it does                                  |
+| ------------------------- | --------------------------------------------- |
+| `npm run dev`             | Starts the client and the server together.    |
+| `npm test`                | Runs the server tests, then the client tests. |
+| `npm -w server test`      | Server tests only.                            |
+| `npm -w client test`      | Client tests only.                            |
+| `npm -w client run build` | Production build of the client.               |
 
 ## Project layout
 
@@ -95,21 +95,21 @@ eventcraft/
 
 All responses use the shape `{ ok, data, error }`.
 
-| Method and path | Auth | Purpose |
-|---|---|---|
-| `GET /api/health` | No | Liveness check. |
-| `POST /api/auth/register` | No | Create an account and start a session. |
-| `POST /api/auth/login` | No | Log in. |
-| `POST /api/auth/logout` | No | End the session. |
-| `GET /api/auth/me` | No | Current user, or `null`. |
-| `GET /api/data` | Yes | Load the saved plan and bookings. |
-| `PUT /api/data` | Yes | Save the plan and bookings. |
-| `GET /api/geocode/autocomplete?text=&lat=&lng=` | No | City, area and street suggestions. |
-| `GET /api/geocode/reverse?lat=&lng=` | No | Place name for coordinates. |
-| `GET /api/places?lat=&lng=&category=&radius=` | No | Nearby places. Falls back to sample vendors. |
-| `POST /api/plan` | No | Generate a plan. Falls back to a template plan. |
-| `POST /api/plan/refine` | No | Revise a plan using extra details. |
-| `POST /api/rank-vendors` | No | AI ranking of real places against the budget. |
+| Method and path                                 | Auth | Purpose                                         |
+| ----------------------------------------------- | ---- | ----------------------------------------------- |
+| `GET /api/health`                               | No   | Liveness check.                                 |
+| `POST /api/auth/register`                       | No   | Create an account and start a session.          |
+| `POST /api/auth/login`                          | No   | Log in.                                         |
+| `POST /api/auth/logout`                         | No   | End the session.                                |
+| `GET /api/auth/me`                              | No   | Current user, or `null`.                        |
+| `GET /api/data`                                 | Yes  | Load the saved plan and bookings.               |
+| `PUT /api/data`                                 | Yes  | Save the plan and bookings.                     |
+| `GET /api/geocode/autocomplete?text=&lat=&lng=` | No   | City, area and street suggestions.              |
+| `GET /api/geocode/reverse?lat=&lng=`            | No   | Place name for coordinates.                     |
+| `GET /api/places?lat=&lng=&category=&radius=`   | No   | Nearby places. Falls back to sample vendors.    |
+| `POST /api/plan`                                | No   | Generate a plan. Falls back to a template plan. |
+| `POST /api/plan/refine`                         | No   | Revise a plan using extra details.              |
+| `POST /api/rank-vendors`                        | No   | AI ranking of real places against the budget.   |
 
 ## How the data rule works
 
@@ -143,3 +143,9 @@ All external calls are mocked or disabled in tests, so no API quota is used.
 ## Ideas for next steps
 
 Hosted database, Hindi interface, keyword search for decorators and photographers, real sample data per city, email-based password reset, shareable read-only plan links, and Gemini as an alternative model provider behind the existing AI service.
+
+## Code quality
+
+- `npm run lint` runs ESLint (React, hooks and Node rules); `npm run format` runs Prettier.
+- `npm run check` runs lint, format check and all tests. GitHub Actions runs the same checks plus the build on every push.
+- Server code is split by job: `routes/` (HTTP), `planner.js` and `ranking.js` (AI features), `ai.js` (Groq client with retries), `geo.js` (Geoapify), `config.js` (all tunable values), `http.js` (response and validation helpers).
