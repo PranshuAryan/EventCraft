@@ -153,6 +153,18 @@ Hosted database, Hindi interface, keyword search for decorators and photographer
 ## Testing
 
 - `npm test` runs all tests (server: Vitest + Supertest, client: Vitest + Testing Library + axe). `npm run coverage` adds a coverage report.
-- **127 tests**: 103 server and 24 client. Server statement coverage is about 96%.
+- **133 tests**: 103 server and 30 client. Server statement coverage is about 96%.
 - Groq and Geoapify are mocked, so no API keys are needed. Tests cover the failure paths: AI retry on rate limits, switching models, repairing malformed AI replies, template fallback plans, and curated vendors when maps fail.
 - Auth tests cover password hashing, tampered or expired session tokens, duplicate emails, and HttpOnly cookies.
+
+## Feature map
+
+| Feature                                                         | Where it lives                                                  |
+| --------------------------------------------------------------- | --------------------------------------------------------------- |
+| AI event plan (budget, dated timeline, vendor checklist, ideas) | `server/src/planner.js`, `client/src/pages/Planner.jsx`         |
+| Improve a plan with extra details, with undo                    | `server/src/planner.js`, `client/src/components/RefineForm.jsx` |
+| Location search and "use my location"                           | `server/src/geo.js`, `client/src/components/LocationBar.jsx`    |
+| Nearby vendors ranked against the plan's budget                 | `server/src/ranking.js`, `client/src/vendorFit.js`              |
+| Payment and booking tracker                                     | `client/src/pages/Tracker.jsx`, `client/src/budgetMath.js`      |
+| Accounts that save plans between visits                         | `server/src/auth.js`, `server/src/userStore.js`                 |
+| Works without AI or map keys (template plan, curated vendors)   | `server/src/utils.js`, `server/data/curatedVendors.json`        |

@@ -66,3 +66,9 @@ Open an issue on the project repository, or contact the maintainer directly. Ple
 - [ ] Redis database connected (see DEPLOYMENT.md), with backups if the data matters
 - [ ] `npm audit` reviewed
 - [ ] `.env` and `server/data/*` confirmed absent from the repository
+
+## Security headers and dependencies
+
+- The frontend is served with a Content-Security-Policy, `X-Frame-Options: DENY`, `nosniff`, a strict referrer policy and a permissions policy (see `vercel.json`). Scripts may only load from the site itself; Google Fonts is the only external source allowed.
+- The API sends Helmet's security headers and only returns JSON.
+- `npm audit` was run; Express, compression and react-router-dom were updated to patched versions. The remaining Zod advisory needs a breaking major upgrade and concerns very large arrays; request bodies are already capped at 20 to 150 KB, which limits the risk.

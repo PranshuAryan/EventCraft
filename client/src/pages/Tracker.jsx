@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { inr } from "../api.js";
 import { bookingTotals, balance } from "../budgetMath.js";
-import { useLoc } from "../App.jsx";
+import { useLoc } from "../context.js";
 const STATUS = ["Inquiry", "Negotiating", "Confirmed", "Cancelled"];
 export default function Tracker() {
   const { plan, bookings: rows, setBookings: setRows } = useLoc();
